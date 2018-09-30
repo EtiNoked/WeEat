@@ -1,0 +1,14 @@
+<%= link_to("<< Go to Cuisines List", cuisine_index_path, :class => 'back-line') %>
+
+<div class="cuisine edit">
+  <h2>Update Cuisine</h2>
+
+  <%= form_for(@cuisine) do |f| %>
+
+    <%= render(:partial => 'cuisine_form', :locals => {:f => f}) %>
+
+    <div class="form-buttons">
+      <%= f.submit("Update Cuisine") %>
+    </div>
+  <% end %>
+</div>

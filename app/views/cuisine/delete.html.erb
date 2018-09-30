@@ -1,0 +1,40 @@
+<%= link_to("<< Go to Cuisines List", cuisine_index_path, :class => 'back-line') %>
+
+<% if !flash[:notice].blank? %>
+  <div class="notice">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+
+<div class="cuisine delete" xmlns="http://www.w3.org/1999/html">
+  <h2>Delete Cuisine</h2>
+
+  <%= form_for(@cuisine, :method => 'delete') do |f| %>
+
+    <p>Are you sure you want to permanently delete this cuisine?</p>
+
+    <p class="reference-name"><%= f.object.name %></p>
+
+    <% if @restaurants.size > 0 %>
+      <p> The following restaurants are linked to this cuisine:</p>
+
+      <table class="restuarants table edit">
+        <% @restaurants.each do |r| %>
+          <tr>
+            <td> <%= r.name %> </td>
+            <td> <%= link_to("Edit", edit_restaurant_path) %> </td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+
+    <br />
+    <br />
+
+    <div class="form-buttons">
+      <%= f.submit("Delete Cuisine") %>
+    </div>
+
+  <% end %>
+</div>
