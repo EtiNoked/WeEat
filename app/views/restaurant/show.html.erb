@@ -1,0 +1,33 @@
+<%= link_to("<< Back to List", restaurant_index_path, :class => 'back-link') %>
+
+<div class="restaurant show">
+  <h2>Show Restaurant</h2>
+
+  <table summary="Restaurant detail view">
+    <tr>
+      <th>Name</th>
+      <td><%= @restaurant.name %></td>
+    </tr>
+    <tr>
+      <th>Cuisine</th>
+      <td><%= @restaurant.genre %></td>
+    </tr>
+    <tr>
+      <th>Rating</th>
+      <td><%= @restaurant.rating %></td>
+    </tr>
+    <tr>
+      <th>Accept 10bis?</th>
+      <td><%= @restaurant.ten_bis ? 'true' : 'false' %></td>
+    </tr>
+    <tr>
+      <th>Address</th>
+      <td><%= @restaurant.address%></td>
+    </tr>
+    <tr>
+      <th>Delivery Time</th>
+      <td><%= @restaurant.delivery_time %></td>
+    </tr>
+  </table>
+
+</div>
