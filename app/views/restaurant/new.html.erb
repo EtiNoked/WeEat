@@ -3,7 +3,7 @@
 <div class="restaurant new">
   <h2>Create Restaurant</h2>
 
-  <%= form_for(@restaurant, :url => restaurant_index_path, :method => 'post') do |f| %>
+  <%= form_for(@restaurant, :url => restaurant_index_path) do |f| %>
 
     <%= render(:partial => 'restaurant_form', :locals => {:f => f}) %>
 

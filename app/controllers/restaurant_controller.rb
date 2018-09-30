@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class RestaurantController < ApplicationController
+
+  before_action :set_cuisines, :except => [:show, :delete, :destroy]
+
   def index
     @restaurants = Restaurant.sorted
   end
@@ -10,7 +13,7 @@ class RestaurantController < ApplicationController
   end
 
   def new
-    @restaurant = Restaurant.new({:name => 'Default', :genre => 'Default'})
+    @restaurant = Restaurant.new({:name => 'Default'})
   end
 
   def create
@@ -41,15 +44,26 @@ class RestaurantController < ApplicationController
     end
   end
 
-  def delete; end
+  def delete
+    @restaurant = Restaurant.find(params[:id])
+  end
 
-  def destroy; end
+  def destroy
+    @restaurant = Restaurant.find(params[:id])
+    flash[:notice] = "Restaurant - #{@restaurant.name} was deleted."
+    @restaurant.destroy
+    redirect_to(restaurant_index_path)
+  end
 
 
   private
 
   def restaurant_params
     params.require(:restaurant)
-        .permit(:name, :genre, :address, :rating, :delivery_time, :ten_bis)
+        .permit(:name, :cuisine_id, :address, :rating, :delivery_time, :ten_bis)
+  end
+
+  def set_cuisines
+    @cuisines = Cuisine.sorted
   end
 end

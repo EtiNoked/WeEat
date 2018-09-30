@@ -13,7 +13,7 @@
     <tr class="header">
       <th>#</th>
       <th>Restaurant</th>
-      <th>Cuisine</th>
+      <th><%= link_to("Cuisine", cuisine_index_path, html_options = { title: "Update cuisines table" }) %></th>
       <th>Rating</th>
       <th>10bis?</th>
       <th>Address</th>
@@ -24,7 +24,7 @@
       <tr>
         <td><%= restaurant.id %></td>
         <td><%= restaurant.name %></td>
-        <td><%= restaurant.genre %></td>
+        <td><%= restaurant.cuisine.name %></td>
         <td><%= restaurant.rating %></td>
         <td><%= restaurant.ten_bis ? 'Yes' : 'No'%></td>
         <td><%= restaurant.address %></td>
