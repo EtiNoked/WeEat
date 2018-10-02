@@ -7,7 +7,7 @@ class CuisineController < ApplicationController
   end
 
   def show
-    @cuisine = Cuisine.find(params[:id])
+    @cuisine = Cuisine.find(params.require(:id))
   end
 
   def new
@@ -26,11 +26,11 @@ class CuisineController < ApplicationController
   end
 
   def edit
-    @cuisine = Cuisine.find(params[:id])
+    @cuisine = Cuisine.find(params.require(:id))
   end
 
   def update
-    @cuisine = Cuisine.find(params[:id])
+    @cuisine = Cuisine.find(params.require(:id))
     if @cuisine.update_attributes(cuisine_params)
       flash[:notice] = "Cuisine #{ @cuisine.name } was updated"
       redirect_to(cuisine_index_path)
@@ -41,11 +41,11 @@ class CuisineController < ApplicationController
   end
 
   def delete
-    @cuisine = Cuisine.find(params[:id])
+    @cuisine = Cuisine.find(params.require(:id))
   end
 
   def destroy
-    @cuisine = Cuisine.find(params[:id])
+    @cuisine = Cuisine.find(params.require(:id))
 
     if @restaurants.size > 0
       flash.now[:notice] = "Couldn't delete a cuisine with restaurants associate to it"
@@ -64,6 +64,6 @@ class CuisineController < ApplicationController
   end
 
   def find_related_restaurants
-    @restaurants = Restaurant.where("cuisine_id = #{ params[:id] }")
+    @restaurants = Restaurant.where("cuisine_id = #{ params.require(:id) }")
   end
 end

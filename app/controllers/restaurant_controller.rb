@@ -9,7 +9,7 @@ class RestaurantController < ApplicationController
   end
 
   def show
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.find(params.require(:id))
   end
 
   def new
@@ -29,13 +29,12 @@ class RestaurantController < ApplicationController
   end
 
   def edit
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.find(params.require(:id))
   end
 
   def update
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.find(params.require(:id))
     if @restaurant.update_attributes(restaurant_params)
-      logger.debug "****** Restaurant was updated. *******"
       flash[:notice] = "Restaurant - #{@restaurant.name} was updated."
       redirect_to(restaurant_index_path)
     else
@@ -45,11 +44,11 @@ class RestaurantController < ApplicationController
   end
 
   def delete
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.find(params.require(:id))
   end
 
   def destroy
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.find(params.require(:id))
     flash[:notice] = "Restaurant - #{@restaurant.name} was deleted."
     @restaurant.destroy
     redirect_to(restaurant_index_path)
