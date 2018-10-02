@@ -15,8 +15,8 @@ class CuisineController < ApplicationController
   end
 
   def create
-    @cuisine = Cuisine.new(cuisine_params)
-    if @cuisine.save
+    @cuisine = Cuisine.create!(cuisine_params)
+    if @cuisine
       flash[:notice] = "New cuisine was saved"
       redirect_to(new_restaurant_path)
     else

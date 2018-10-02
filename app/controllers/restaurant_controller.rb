@@ -17,9 +17,8 @@ class RestaurantController < ApplicationController
   end
 
   def create
-    @restaurant = Restaurant.new(restaurant_params)
-    if @restaurant.save
-      logger.debug "****** New restaurant was seved to DB. *******"
+    @restaurant = Restaurant.create!(restaurant_params)
+    if @restaurant
       flash[:notice] = "New restaurant - #{@restaurant.name} was saved."
       redirect_to(restaurant_index_path)
     else
