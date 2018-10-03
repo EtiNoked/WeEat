@@ -16,7 +16,7 @@
 
     <p class="reference-name"><%= f.object.name %></p>
 
-    <% if @restaurants.size > 0 %>
+    <% if @restaurants.any? %>
       <p> The following restaurants are linked to this cuisine:</p>
 
       <table class="restuarants table edit">

@@ -1,14 +1,14 @@
 class CuisinesController < ApplicationController
 
   before_action :find_related_restaurants, :only => [:delete, :destroy]
+  before_action :find_cuisine, :except => [:index, :new, :create]
+
 
   def index
     @cuisines = Cuisine.sorted_by_name_asc
   end
 
-  def show
-    @cuisine = Cuisine.find(params.require(:id))
-  end
+  def show; end
 
   def new
     @cuisine = Cuisine.new
@@ -25,12 +25,9 @@ class CuisinesController < ApplicationController
     end
   end
 
-  def edit
-    @cuisine = Cuisine.find(params.require(:id))
-  end
+  def edit; end
 
   def update
-    @cuisine = Cuisine.find(params.require(:id))
     if @cuisine.update(cuisine_params)
       flash[:notice] = "Cuisine #{ @cuisine.name } was updated"
       redirect_to(cuisines_path)
@@ -40,14 +37,10 @@ class CuisinesController < ApplicationController
     end
   end
 
-  def delete
-    @cuisine = Cuisine.find(params.require(:id))
-  end
+  def delete; end
 
   def destroy
-    @cuisine = Cuisine.find(params.require(:id))
-
-    if @restaurants.size > 0
+    if @restaurants.any?
       flash.now[:notice] = "Couldn't delete a cuisine with restaurants associate to it"
       render('delete')
     else
@@ -65,5 +58,9 @@ class CuisinesController < ApplicationController
 
   def find_related_restaurants
     @restaurants = Restaurant.where("cuisine_id = #{ params.require(:id) }")
+  end
+
+  def find_cuisine
+    @cuisine = Cuisine.find(params.require(:id))
   end
 end
