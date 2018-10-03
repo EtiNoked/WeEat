@@ -1,0 +1,14 @@
+<%= link_to("<< Back to Restaurant View", restaurant_path(@review.restaurant_id), :class => 'back-link') %>
+
+<div class="review edit">
+  <h2>Add Review for Restaurant: <%= @review.restaurant.name %> </h2>
+
+  <%= form_for(@review) do |f| %>
+    <%= render(:partial => 'review_form', :locals => {:f => f}) %>
+    <%= f.hidden_field :restaurant_id, value: @review.restaurant_id %>
+
+    <div class="form-buttons">
+      <%= f.submit "Add Review" %>
+    </div>
+  <% end %>
+</div>

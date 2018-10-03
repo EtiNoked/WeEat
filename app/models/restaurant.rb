@@ -4,6 +4,7 @@
 class Restaurant < ApplicationRecord
 
   belongs_to :cuisine
+  has_many :reviews
 
   # data validations:
   validates_presence_of :name

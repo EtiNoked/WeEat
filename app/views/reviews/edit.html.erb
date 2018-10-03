@@ -1,0 +1,13 @@
+<%= link_to("<< Back to List", reviews_path, :class => 'back-line') %>
+
+<div class="review edit">
+  <h2>Update Review</h2>
+
+  <%= form_for(@review) do |f| %>
+    <%= render(:partial => 'review_form', :locals => {:f => f}) %>
+
+    <div class="form-buttons">
+      <%= f.submit("Update Review") %>
+    </div>
+  <% end %>
+</div>

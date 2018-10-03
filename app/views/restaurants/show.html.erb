@@ -30,4 +30,12 @@
     </tr>
   </table>
 
+  <br />
+  <br />
+
+  <p> <%= link_to("Add review", new_review_path(:restaurant_id => @restaurant.id)) %> </p>
+  <p> <%= link_to("Show reviews", reviews_path(:restaurant_id => @restaurant.id)) %> </p>
+
+
+
 </div>
