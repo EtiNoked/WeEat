@@ -1,9 +1,9 @@
-class CuisineController < ApplicationController
+class CuisinesController < ApplicationController
 
   before_action :find_related_restaurants, :only => [:delete, :destroy]
 
   def index
-    @cuisines = Cuisine.sorted
+    @cuisines = Cuisine.sorted_by_name_asc
   end
 
   def show
@@ -31,9 +31,9 @@ class CuisineController < ApplicationController
 
   def update
     @cuisine = Cuisine.find(params.require(:id))
-    if @cuisine.update_attributes(cuisine_params)
+    if @cuisine.update(cuisine_params)
       flash[:notice] = "Cuisine #{ @cuisine.name } was updated"
-      redirect_to(cuisine_index_path)
+      redirect_to(cuisines_path)
     else
       @flash.now[:notice] = "Issue with updating cuisine"
       render('edit')
@@ -53,7 +53,7 @@ class CuisineController < ApplicationController
     else
       @cuisine.destroy
       flash[:notice] = "Cuisine #{ @cuisine.name } was deleted"
-      redirect_to(cuisine_index_path)
+      redirect_to(cuisines_path)
     end
   end
 

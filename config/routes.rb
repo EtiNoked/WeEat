@@ -2,15 +2,15 @@
 
 Rails.application.routes.draw do
 
-  root :to => 'restaurant#index'
+  root :to => 'restaurants#index'
 
-  resources :restaurant do
+  resources :restaurants do
     member do
       get :delete
     end
   end
 
-  resources :cuisine do
+  resources :cuisines do
     member do
       get :delete
     end

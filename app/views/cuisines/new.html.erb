@@ -1,9 +1,9 @@
-<%= link_to("<< Go to Cuisines List", cuisine_index_path, :class => 'back-line') %>
+<%= link_to("<< Go to Cuisines List", cuisines_path, :class => 'back-line') %>
 
 <div class="cuisine new">
   <h2>Create Cuisine</h2>
 
-  <%= form_for(@cuisine, :url => cuisine_index_path) do |f| %>
+  <%= form_for(@cuisine, :url => cuisines_path) do |f| %>
 
     <%= render(:partial => 'cuisine_form', :locals => {:f => f}) %>
 
