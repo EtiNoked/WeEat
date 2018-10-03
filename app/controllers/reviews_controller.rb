@@ -1,12 +1,13 @@
 class ReviewsController < ApplicationController
+
+  before_action :find_review, :except => [:index, :new, :create]
+
   def index
     @restaurant_id = params.require(:restaurant_id)
     @reviews = Review.where(:restaurant_id => @restaurant_id)
   end
 
-  def show
-    @review = Review.find(params[:id])
-  end
+  def show; end
 
   def new
     @review = Review.new
@@ -25,12 +26,9 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def edit
-    @review = Review.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @review = Review.find(params[:id])
     if @review.update_attributes(review_params)
       flash[:notice] = "Review for restaurant #{ @review.restaurant.name } was updated"
       redirect_to(restaurant_path(params[:restuarant_id]))
@@ -40,12 +38,9 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def delete
-    @review = Review.find(params[:id])
-  end
+  def delete; end
 
   def destroy
-    @review = Review.find(params[:id])
     @review.destroy
     flash[:notice] = "Delete review."
     redirect_to(restaurant_path(params[:restuarant_id]))
@@ -55,6 +50,10 @@ class ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(:rating, :summary, :full_review, :user_id, :restaurant_id)
+  end
+
+  def find_review
+    @review = Review.find(params.require(:id))
   end
 
 end
