@@ -1,5 +1,20 @@
-Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+# frozen_string_literal: true
 
-  get '/a' => 'application#root'
+Rails.application.routes.draw do
+
+  root :to => 'restaurants#index'
+
+  resources :restaurants do
+    member do
+      get :delete
+    end
+  end
+
+  resources :cuisines do
+    member do
+      get :delete
+    end
+  end
+
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
