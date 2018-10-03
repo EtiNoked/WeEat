@@ -1,14 +1,13 @@
 class RestaurantsController < ApplicationController
 
   before_action :set_cuisines, :except => [:show, :delete, :destroy]
+  before_action :find_restaurant, :except => [:index, :new, :create]
 
   def index
     @restaurants = Restaurant.sorted_by_name_asc
   end
 
-  def show
-    @restaurant = Restaurant.find(params.require(:id))
-  end
+  def show; end
 
   def new
     @restaurant = Restaurant.new({:name => 'Default'})
@@ -25,12 +24,9 @@ class RestaurantsController < ApplicationController
     end
   end
 
-  def edit
-    @restaurant = Restaurant.find(params.require(:id))
-  end
+  def edit; end
 
   def update
-    @restaurant = Restaurant.find(params.require(:id))
     if @restaurant.update(restaurant_params)
       flash[:notice] = "Restaurant - #{@restaurant.name} was updated."
       redirect_to(restaurants_path)
@@ -40,12 +36,9 @@ class RestaurantsController < ApplicationController
     end
   end
 
-  def delete
-    @restaurant = Restaurant.find(params.require(:id))
-  end
+  def delete; end
 
   def destroy
-    @restaurant = Restaurant.find(params.require(:id))
     flash[:notice] = "Restaurant - #{@restaurant.name} was deleted."
     @restaurant.destroy
     redirect_to(restaurants_path)
@@ -61,5 +54,9 @@ class RestaurantsController < ApplicationController
 
   def set_cuisines
     @cuisines = Cuisine.sorted_by_name_asc
+  end
+
+  def find_restaurant
+    @restaurant = Restaurant.find(params.require(:id))
   end
 end
