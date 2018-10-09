@@ -5,14 +5,9 @@ class RestaurantsController < ApplicationController
 
   def index
     @restaurants = Restaurant.sorted_by_name_asc
-    @restaurants.each do |r|
-      calculate_rating r
-    end
   end
 
-  def show
-    calculate_rating @restaurant
-  end
+  def show; end
 
   def new
     @restaurant = Restaurant.new({:name => 'Default'})
@@ -59,11 +54,6 @@ class RestaurantsController < ApplicationController
 
   def set_cuisines
     @cuisines = Cuisine.sorted_by_name_asc
-  end
-
-
-  def calculate_rating rest
-    rest.rating = rest.reviews.average(:rating)
   end
 
   def find_restaurant

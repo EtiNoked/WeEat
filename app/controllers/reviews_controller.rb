@@ -29,7 +29,7 @@ class ReviewsController < ApplicationController
   def edit; end
 
   def update
-    if @review.update_attributes(review_params)
+    if @review.update(review_params)
       flash[:notice] = "Review for restaurant #{ @review.restaurant.name } was updated"
       redirect_to(restaurant_path(params[:restuarant_id]))
     else

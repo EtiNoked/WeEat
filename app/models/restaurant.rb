@@ -8,4 +8,9 @@ class Restaurant < ApplicationRecord
 
   # data validations:
   validates_presence_of :name
+
+  def update_rating
+    self.rating = reviews.sum(:rating) / reviews.length
+  end
+
 end
