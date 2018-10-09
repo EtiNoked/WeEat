@@ -1,27 +1,22 @@
 class RestaurantsController < ApplicationController
 
   before_action :set_cuisines, :except => [:show, :delete, :destroy]
-  before_action :find_restaurant, :except => [:index, :new, :create]
+  before_action :find_restaurant, :except => [:index, :new, :create, :show]
 
   def index
     @restaurants = Restaurant.sorted_by_name_asc
   end
 
-  def show; end
+  def show
+    render json: Restaurant.find(params[:id]).to_json
+  end
 
   def new
     @restaurant = Restaurant.new({:name => 'Default'})
   end
 
   def create
-    @restaurant = Restaurant.create!(restaurant_params)
-    if @restaurant
-      flash[:notice] = "New restaurant - #{@restaurant.name} was saved."
-      redirect_to(restaurants_path)
-    else
-      flash.now[:notice] = "Error occur while saving new restaurant - #{@restaurant.name} : #{@restaurant.errors.full_messages}"
-      render('new')
-    end
+    render json: Restaurant.create!(restaurant_params).to_json, status: :created
   end
 
   def edit; end
