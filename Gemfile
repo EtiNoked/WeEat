@@ -63,3 +63,8 @@ group :test do
 end
 
 gem 'active_model_serializers'
+
+group :development, :test do
+  gem 'factory_bot_rails'
+  gem 'rspec-rails', '>= 2.0.0.beta'
+end
