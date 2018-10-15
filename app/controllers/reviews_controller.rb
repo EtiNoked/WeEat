@@ -1,59 +1,40 @@
 class ReviewsController < ApplicationController
 
-  before_action :find_review, :except => [:index, :new, :create]
-
   def index
-    @restaurant_id = params.require(:restaurant_id)
-    @reviews = Review.where(:restaurant_id => @restaurant_id)
+    restaurant_id = params.require(:restaurant_id)
+    render json: Review.where(:restaurant_id => restaurant_id)
   end
 
-  def show; end
-
-  def new
-    @review = Review.new
-    @review.restaurant_id = params.require(:restaurant_id)
+  def show
+    render json: Review.find(params[:id])
+  rescue ActiveRecord::RecordNotFound => error
+    render json: {status: 'error', code: 404, message: error.message}, :status => :not_found
   end
 
   def create
-    @review = Review.new(review_params)
-
-    if @review.save
-      flash[:notice] = "New review was saved"
-      redirect_to(restaurant_path(@review.restaurant_id))
-    else
-      flash.now[:notice] = "Could not create new review"
-      render('new')
-    end
+    render json: Review.create!(review_params), status: :created
+  rescue ActiveRecord::RecordInvalid => error
+    render json: {status: 'error', code: 400, message: error.message}, :status => 400
   end
-
-  def edit; end
 
   def update
-    if @review.update(review_params)
-      flash[:notice] = "Review for restaurant #{ @review.restaurant.name } was updated"
-      redirect_to(restaurant_path(params[:restuarant_id]))
-    else
-      @flash.now[:notice] = "Issue with updating review"
-      render('edit')
-    end
+    render json: Review.find(params[:id]).update!(review_params), status: :accepted
+  rescue ActiveRecord::RecordInvalid => error
+    render json: {status: 'error', code: 400, message: error.message}, :status => 400
+  rescue ActiveRecord::RecordNotFound => error
+    render json: {status:'error', code: 404, message: error.message}, :status => :not_found
   end
 
-  def delete; end
-
   def destroy
-    @review.destroy
-    flash[:notice] = "Delete review."
-    redirect_to(restaurant_path(params[:restuarant_id]))
+    render json: Review.find(params[:id]).destroy!, status: :accepted
+  rescue ActiveRecord::RecordNotFound => error
+    render json: {status:'error', code: 404, message: error.message}, :status => :not_found
   end
 
   private
 
   def review_params
     params.require(:review).permit(:rating, :summary, :full_review, :user_id, :restaurant_id)
-  end
-
-  def find_review
-    @review = Review.find(params.require(:id))
   end
 
 end

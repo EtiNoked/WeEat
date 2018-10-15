@@ -5,9 +5,7 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-    restaurant = Restaurant.find(params[:id])
-    render json: restaurant
-
+    render json: Restaurant.find(params[:id])
   rescue ActiveRecord::RecordNotFound => error
     render json: {status: 'error', code: 404, message: error.message}, :status => :not_found
   end
