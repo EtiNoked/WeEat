@@ -14,5 +14,10 @@
 #
 
 class RestaurantSerializer < ApplicationSerializer
-  attributes :name, :cuisine_id, :rating, :ten_bis, :address
+  attributes :name, :cuisine_name, :rating, :ten_bis, :address
+  has_many :reviews
+
+  def cuisine_name
+    object.cuisine.name
+  end
 end
