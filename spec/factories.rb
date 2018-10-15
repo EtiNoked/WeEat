@@ -1,10 +1,13 @@
+require 'faker'
+include Faker
+
 FactoryBot.define do
 
   factory :restaurant do
-    name 'Rest_default'
+    name { Faker::Name.name }
     cuisine_id 1
     address 'Tel Aviv'
-    delivery_time 50
+    delivery_time { Faker::Number.number(3) }
   end
 
   factory :cuisine do
