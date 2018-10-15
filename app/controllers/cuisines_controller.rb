@@ -13,13 +13,13 @@ class CuisinesController < ApplicationController
   def create
     render json: Cuisine.create!(cuisine_params), status: :created
   rescue ActiveRecord::RecordInvalid => error
-    render json: {status: 'error', code: 400, message: error.message}, :status => 400
+    render json: {status: 'error', code: 400, message: error.message}, :status => :bad_request
   end
 
   def update
     render json: Cuisine.find(params[:id]).update!(cuisine_params), status: :accepted
   rescue ActiveRecord::RecordInvalid => error
-    render json: {status: 'error', code: 400, message: error.message}, :status => 400
+    render json: {status: 'error', code: 400, message: error.message}, :status => :bad_request
   rescue ActiveRecord::RecordNotFound => error
     render json: {status:'error', code: 404, message: error.message}, :status => :not_found
   end
