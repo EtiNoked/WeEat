@@ -4,23 +4,9 @@ Rails.application.routes.draw do
 
   root :to => 'restaurants#index'
 
-  resources :restaurants do
-    member do
-      get :delete
-    end
-  end
-
-  resources :cuisines do
-    member do
-      get :delete
-    end
-  end
-
-  resources :reviews do
-    member do
-      get :delete
-    end
-  end
+  resources :restaurants, defaults: {format: :json}
+  resources :cuisines
+  resources :reviews
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
