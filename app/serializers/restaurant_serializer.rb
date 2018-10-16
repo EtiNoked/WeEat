@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: restaurants
@@ -15,16 +13,11 @@
 #  updated_at    :datetime         not null
 #
 
-class Restaurant < ApplicationRecord
-
-  belongs_to :cuisine
+class RestaurantSerializer < ApplicationSerializer
+  attributes :name, :cuisine_name, :rating, :ten_bis, :address
   has_many :reviews
 
-  # data validations:
-  validates_presence_of :name
-
-  def update_rating
-    self.rating = reviews.empty? ? 0 : (reviews.sum(:rating) / reviews.length)
+  def cuisine_name
+    object.cuisine.name
   end
-
 end
