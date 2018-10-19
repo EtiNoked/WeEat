@@ -23,6 +23,6 @@ class CuisinesController < ApplicationController
   private
 
   def cuisine_params
-    params.require(:cuisine).permit(:name)
+    params.require(:cuisine).permit(:name, :image_url)
   end
 end

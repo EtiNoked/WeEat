@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2018_10_02_075411) do
 
   create_table "cuisines", force: :cascade do |t|
     t.string "name"
+    t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_cuisines_on_name"
