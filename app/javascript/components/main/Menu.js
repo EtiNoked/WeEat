@@ -2,8 +2,44 @@ import React from "react"
 import {NavLink} from 'react-router-dom'
 import {MdSearch} from 'react-icons/md'
 import {TiFilter} from 'react-icons/ti'
+import { Icon } from 'react-icons-kit'
+import { filter, search } from 'react-icons-kit/icomoon'
 
 import SearchBar from 'components/restaurants/SearchBar'
+
+class ToggleButton extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            isActive: false
+        }
+    }
+
+    getIcon = () => {
+        return (
+            this.props.icon == 'filter' ? filter : (
+                this.props.icon == 'search' ? search : null
+            )
+        )
+    }
+
+    toggleActivation = () => {
+        this.setState({isActive: !this.state.isActive})
+    }
+
+    render() {
+        let icon = this.getIcon();
+        return (
+            <button
+                id={this.props.button_id}
+                style={{color: this.state.isActive? 'orange' : 'white'}}
+                onClick={this.toggleActivation}
+            >
+                <Icon size={28} icon={icon}/>
+            </button>
+        )
+    }
+}
 
 class Menu extends React.Component {
 
@@ -15,13 +51,25 @@ class Menu extends React.Component {
     }
 
     setSelectedMenu = (lable) => {
-        console.error("lable: " + lable)
         this.setState({selectedMenu: lable});
     }
 
+    searchFilterButtons = () => {
+        return (
+            this.state.selectedMenu === "Restaurants" ? (
+                <ul className='navigation right'>
+                    <li>
+                        <ToggleButton id='filter-button' icon='filter'/>
+                    </li>
+                    <li>
+                        <ToggleButton id='search-button' icon='search'/>
+                    </li>
+                </ul>
+            ) : null
+        )
+    }
 
     render() {
-
         let linksMarkup = this.props.links.map((link, index) => {
             return (
                 <li key={index}>
@@ -39,14 +87,7 @@ class Menu extends React.Component {
             )
         })
 
-        let additionalButtons = this.props.children ?
-            this.props.children.map((child, index) => {
-                return (
-                    <li>
-                        child
-                    </li>
-                )
-            }) : null
+        let buttons = this.searchFilterButtons();
 
         return (
             <div id='menu'>
@@ -56,18 +97,7 @@ class Menu extends React.Component {
                     </ul>
                 </div>
                 <div>
-                    {
-                        this.state.selectedMenu === "Restaurants" ? (
-                            <ul className='navigation right'>
-                                <li>
-                                    <button id='search-button'><TiFilter color='white' size={30}/></button>
-                                </li>
-                                <li>
-                                    <button id='search-button'><MdSearch color='white' size={30}/></button>
-                                </li>
-                            </ul>
-                        ) : null
-                    }
+                    {buttons}
                 </div>
             </div>
         );
