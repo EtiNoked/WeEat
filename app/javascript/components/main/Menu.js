@@ -1,13 +1,11 @@
 import React from "react"
-import {NavLink} from 'react-router-dom'
-import {MdSearch} from 'react-icons/md'
-import {TiFilter} from 'react-icons/ti'
-import { Icon } from 'react-icons-kit'
-import { filter, search } from 'react-icons-kit/icomoon'
+import {BrowserRouter, NavLink, Switch, Route} from 'react-router-dom'
+import {Icon} from 'react-icons-kit'
+import {filter, search} from 'react-icons-kit/icomoon'
 
 import SearchBar from 'components/restaurants/SearchBar'
 
-class ToggleButton extends React.Component {
+class ToggledButton extends React.Component {
     constructor() {
         super()
         this.state = {
@@ -24,7 +22,8 @@ class ToggleButton extends React.Component {
     }
 
     toggleActivation = () => {
-        this.setState({isActive: !this.state.isActive})
+        this.setState({isActive: !this.state.isActive});
+        this.props.handler();
     }
 
     render() {
@@ -32,7 +31,7 @@ class ToggleButton extends React.Component {
         return (
             <button
                 id={this.props.button_id}
-                style={{color: this.state.isActive? 'orange' : 'white'}}
+                style={{color: this.state.isActive ? 'orange' : 'white'}}
                 onClick={this.toggleActivation}
             >
                 <Icon size={28} icon={icon}/>
@@ -43,26 +42,23 @@ class ToggleButton extends React.Component {
 
 class Menu extends React.Component {
 
-    constructor() {
-        super();
-        this.state = {
-            selectedMenu: "Home"
-        }
+    toggleSearch = () => {
+        this.props.toggleSearchHandler();
     }
 
-    setSelectedMenu = (lable) => {
-        this.setState({selectedMenu: lable});
+    toggleFilter = () => {
+        this.props.toggleFilterHandler();
     }
 
     searchFilterButtons = () => {
         return (
-            this.state.selectedMenu === "Restaurants" ? (
+            this.props.selectedMenu === "Restaurants" ? (
                 <ul className='navigation right'>
                     <li>
-                        <ToggleButton id='filter-button' icon='filter'/>
+                        <ToggledButton id='filter-button' icon='filter' handler={this.toggleFilter}/>
                     </li>
                     <li>
-                        <ToggleButton id='search-button' icon='search'/>
+                        <ToggledButton id='search-button' icon='search' handler={this.toggleSearch}/>
                     </li>
                 </ul>
             ) : null
@@ -70,22 +66,6 @@ class Menu extends React.Component {
     }
 
     render() {
-        let linksMarkup = this.props.links.map((link, index) => {
-            return (
-                <li key={index}>
-                    <NavLink
-                        activeStyle={{
-                            fontWeight: "bold",
-                            color: "orange"
-                        }}
-                        exact to={link.link}
-                        onClick={this.setSelectedMenu.bind(this, link.lable)}
-                    >
-                        {link.lable}
-                    </NavLink>
-                </li>
-            )
-        })
 
         let buttons = this.searchFilterButtons();
 
@@ -93,7 +73,7 @@ class Menu extends React.Component {
             <div id='menu'>
                 <div>
                     <ul className='navigation left'>
-                        {linksMarkup}
+                        {this.props.linksMarkup}
                     </ul>
                 </div>
                 <div>

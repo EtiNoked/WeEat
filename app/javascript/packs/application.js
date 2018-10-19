@@ -10,24 +10,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Root from 'components/main/Root'
-import Restaurants from 'components/restaurants/Restaurants'
-import About from 'components/main/About'
-import { BrowserRouter, Route } from 'react-router-dom'
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    const App = () => (
-        <BrowserRouter>
-            <div className="sans-serif">
-                <Route path="/" component={Root} />
-                <Route path="/restaurants" component={Restaurants} />
-                <Route path="/about" component={About} />
-            </div>
-        </BrowserRouter>
-    );
 
     ReactDOM.render(
-        <App />,
+        <Root />,
         document.body.appendChild(document.createElement('div'))
     )
 })
