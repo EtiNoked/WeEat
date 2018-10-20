@@ -2,6 +2,8 @@ import React from "react"
 import {BrowserRouter, NavLink, Switch, Route} from 'react-router-dom'
 import {Icon} from 'react-icons-kit'
 import {filter, search} from 'react-icons-kit/icomoon'
+import About from 'components/main/About'
+import Restaurants from 'components/restaurants/Restaurants'
 
 import SearchBar from 'components/restaurants/SearchBar'
 
@@ -41,24 +43,39 @@ class ToggledButton extends React.Component {
 }
 
 class Menu extends React.Component {
-
-    toggleSearch = () => {
-        this.props.toggleSearchHandler();
+    constructor() {
+        super()
+        this.state = {
+            isSearchActive: false,
+            isFilterActive: false,
+            selectedMenu: 'Home'
+        }
     }
 
-    toggleFilter = () => {
-        this.props.toggleFilterHandler();
+    setSelectedMenu = (lable) => {
+        this.setState({selectedMenu: lable});
+    }
+
+    toggleSearchBar = () => {
+        this.setState({isSearchActive: !this.state.isSearchActive})
+    }
+
+    toggleFilterBar = () => {
+        this.setState({isFilterActive: !this.state.isFilterActive})
     }
 
     searchFilterButtons = () => {
+        console.error(this.state.selectedMenu)
+
         return (
-            this.props.selectedMenu === "Restaurants" ? (
+
+            this.state.selectedMenu === "Restaurants" ? (
                 <ul className='navigation right'>
                     <li>
-                        <ToggledButton id='filter-button' icon='filter' handler={this.toggleFilter}/>
+                        <ToggledButton id='filter-button' icon='filter' handler={this.toggleFilterBar}/>
                     </li>
                     <li>
-                        <ToggledButton id='search-button' icon='search' handler={this.toggleSearch}/>
+                        <ToggledButton id='search-button' icon='search' handler={this.toggleSearchBar}/>
                     </li>
                 </ul>
             ) : null
@@ -69,15 +86,55 @@ class Menu extends React.Component {
 
         let buttons = this.searchFilterButtons();
 
+        const links = [
+            {lable: 'Home', link: '/'},
+            {lable: 'About', link: '/about'},
+            {lable: 'Restaurants', link: '/restaurants'}
+        ];
+
+        const linksMarkup = links.map((link, index) => {
+            return (
+                <li key={index}>
+                    <NavLink
+                        activeStyle={{
+                            fontWeight: "bold",
+                            color: "orange"
+                        }}
+                        exact to={link.link}
+                        onClick={this.setSelectedMenu.bind(this, link.lable)}
+                    >
+                        {link.lable}
+                    </NavLink>
+                </li>
+            )
+        })
+
         return (
-            <div id='menu'>
+            <div>
                 <div>
-                    <ul className='navigation left'>
-                        {this.props.linksMarkup}
-                    </ul>
-                </div>
-                <div>
-                    {buttons}
+                    <BrowserRouter>
+                        <div>
+                            <div id='menu'>
+                                <ul className='navigation left'>
+                                    {linksMarkup}
+                                </ul>
+                                <div>
+                                    {buttons}
+                                </div>
+                            </div>
+                            <Route
+                                exact path="/restaurants"
+                                render={(props) =>
+                                    <Restaurants
+                                        isSearchShown={this.state.isSearchActive}
+                                        isFilterShown={this.state.isFilterActive}
+                                        {...props}
+                                    />
+                                }
+                            />
+                            <Route path="/about" component={About}/>
+                        </div>
+                    </BrowserRouter>
                 </div>
             </div>
         );
