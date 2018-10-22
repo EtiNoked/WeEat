@@ -33,7 +33,7 @@ class ToggledButton extends React.Component {
         return (
             <button
                 id={this.props.button_id}
-                style={{color: this.state.isActive ? 'orange' : 'white'}}
+                style={{color: this.props.isActive ? 'orange' : 'white'}}
                 onClick={this.toggleActivation}
             >
                 <Icon size={28} icon={icon}/>
@@ -70,10 +70,20 @@ class Menu extends React.Component {
             this.state.selectedMenu === "Restaurants" ? (
                 <ul className='navigation right'>
                     <li>
-                        <ToggledButton id='filter-button' icon='filter' handler={this.toggleFilterBar}/>
+                        <ToggledButton
+                            id='filter-button'
+                            icon='filter'
+                            isActive={this.state.isFilterActive}
+                            handler={this.toggleFilterBar}
+                        />
                     </li>
                     <li>
-                        <ToggledButton id='search-button' icon='search' handler={this.toggleSearchBar}/>
+                        <ToggledButton
+                            id='search-button'
+                            icon='search'
+                            isActive={this.state.isSearchActive}
+                            handler={this.toggleSearchBar}
+                        />
                     </li>
                 </ul>
             ) : null
