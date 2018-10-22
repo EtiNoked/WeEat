@@ -1,5 +1,7 @@
 import React from "react"
 import DynamicBar from 'components/restaurants/DynamicBar'
+import {Icon} from 'react-icons-kit'
+import {search, cross} from 'react-icons-kit/icomoon'
 
 class SearchBar extends DynamicBar {
 
@@ -7,8 +9,13 @@ class SearchBar extends DynamicBar {
         return (
             <DynamicBar
                 bar={
-                    <div id='filter-bar'>
-                        search stub
+                    <div className="dynamic-bar">
+                        <Icon size={25} icon={search}/>
+                        <input
+                            id='search-input-bar'
+                            className='rounded shadow'
+                            placeholder="Search Restaurant"
+                            onChange={this.props.onChange} />
                     </div>
                 }
             />

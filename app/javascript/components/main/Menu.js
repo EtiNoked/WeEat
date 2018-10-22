@@ -65,8 +65,6 @@ class Menu extends React.Component {
     }
 
     searchFilterButtons = () => {
-        console.error(this.state.selectedMenu)
-
         return (
 
             this.state.selectedMenu === "Restaurants" ? (

@@ -1,6 +1,4 @@
 import React from 'react'
-import 'stylesheets/restaurants.css'
-
 
 export class Restaurant extends React.Component {
     render () {
