@@ -12,9 +12,7 @@
     "react-icons-kit": "^1.2.0",
     "react-if-img": "^1.0.1",
     "react-router": "^4.3.1",
-    "react-router-dom": "^4.3.1"
-  },
-  "devDependencies": {
+    "react-router-dom": "^4.3.1",
     "babel-preset-stage-0": "^6.24.1",
     "webpack-dev-server": "2.11.2"
   },

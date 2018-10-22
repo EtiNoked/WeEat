@@ -12,8 +12,6 @@ import ReactDOM from 'react-dom'
 import Root from 'components/main/Root'
 
 document.addEventListener('DOMContentLoaded', () => {
-
-
     ReactDOM.render(
         <Root />,
         document.body.appendChild(document.createElement('div'))
