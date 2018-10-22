@@ -14,7 +14,7 @@ class FilterForm extends React.Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:3000/cuisines').then(results => {
+        fetch('/cuisines').then(results => {
             return results.json();
         }).then(data => {
             let cuisines = data.map(cuisine => cuisine.name);
