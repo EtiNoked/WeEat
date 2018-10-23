@@ -13,16 +13,6 @@ class FilterForm extends React.Component {
         }
     }
 
-    componentDidMount() {
-        fetch('/cuisines').then(results => {
-            return results.json();
-        }).then(data => {
-            let cuisines = data.map(cuisine => cuisine.name);
-            cuisines.unshift("");
-            this.setState({cuisineOptions: cuisines});
-        });
-    }
-
     render() {
         return (
             <div className="container">
@@ -32,6 +22,7 @@ class FilterForm extends React.Component {
                     ratingOptions={this.state.ratingOptions}
                     changeOption={this.props.onFilterChange}
                     filteredValues={this.props.filteredValues}
+                    filteredList={this.props.filteredList}
                 />
             </div>
         )
@@ -56,8 +47,6 @@ let FilterOption = (id, value, options) => {
             </select>
         </div>
     )
-
-
 }
 
 class FilterOptions extends React.Component {
@@ -66,7 +55,22 @@ class FilterOptions extends React.Component {
         this.props.changeOption(val, type);
     }
 
+    cuisineOptions = () => {
+        let cuisines = this.props.filteredList.map(item => {
+            return item.props.cuisine
+        });
+        let uniqueCuisines = cuisines.filter(function(item, pos, self) {
+            return self.indexOf(item) == pos;
+        });
+
+        uniqueCuisines.unshift("");
+        return uniqueCuisines;
+
+    }
+
     render() {
+        let cuisines = this.cuisineOptions();
+
         return (
             <div className="filter-options">
                 <div className="filter-option">
@@ -95,7 +99,7 @@ class FilterOptions extends React.Component {
                             value={this.props.filteredValues.cuisine}
                             onChange={this.changeOption.bind(this, 'cuisine')}
                         >
-                            {this.props.cuisineOptions.map(function (option, index) {
+                            {cuisines.map(function (option, index) {
                                 return (<option key={index} value={option}>{option}</option>)
                             })}
                         </select>
@@ -132,6 +136,7 @@ class FilterBar extends DynamicBar {
                         <FilterForm
                             onFilterChange={this.props.onFilterChange}
                             filteredValues={this.props.filteredValues}
+                            filteredList={this.props.filteredList}
                         />
                         <button onClick={this.props.clearFilters}>
                             <Icon size={25} icon={cross} style={{color: '#464646'}}/>

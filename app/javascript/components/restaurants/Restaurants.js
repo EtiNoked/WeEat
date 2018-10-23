@@ -106,6 +106,7 @@ export class Restaurants extends React.Component {
                             clearFilters={this.clearFilters}
                             onFilterChange={this.filterItems}
                             filteredValues={this.state.filteredValues}
+                            filteredList={this.state.filteredRests}
                         />
                         : null}
                 </div>
