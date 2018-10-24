@@ -92,7 +92,7 @@ class Menu extends React.Component {
 
     render() {
 
-        let buttons = this.searchFilterButtons();
+        const buttons = this.searchFilterButtons();
 
         const links = [
             {lable: 'Home', link: '/'},
