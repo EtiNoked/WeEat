@@ -52,8 +52,8 @@ class Menu extends React.Component {
         }
     }
 
-    setSelectedMenu = (lable) => {
-        this.setState({selectedMenu: lable});
+    setSelectedMenu = (label) => {
+        this.setState({selectedMenu: label});
     }
 
     toggleSearchBar = () => {
