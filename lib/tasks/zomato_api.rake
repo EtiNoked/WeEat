@@ -77,12 +77,5 @@ namespace :zomato_api do
       new_rest.save!
       saveReviews new_rest.id
     end
-
-      #restaurants = response[""]
-    #TODO: go over the response, get the relavent information (name, address, etc), save to DB
-    # for each restaurant - get reviews --> different query, different function.
-    #
-    # LAST: find out how to save this data to remote DB (heroku)
-
   end
 end

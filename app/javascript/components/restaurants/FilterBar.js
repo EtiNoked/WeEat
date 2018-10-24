@@ -65,7 +65,6 @@ class FilterOptions extends React.Component {
 
         uniqueCuisines.unshift("");
         return uniqueCuisines;
-
     }
 
     render() {

@@ -122,7 +122,7 @@ class Menu extends React.Component {
                 <div>
                     <BrowserRouter>
                         <div>
-                            <div id='menu'>
+                            <div id='menu' className='horizontal-bar'>
                                 <ul className='navigation left'>
                                     {linksMarkup}
                                 </ul>

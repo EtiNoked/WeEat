@@ -2,6 +2,7 @@ import React from "react"
 import Restaurant from 'components/restaurants/Restaurant'
 import FilterBar from 'components/restaurants/FilterBar'
 import SearchBar from 'components/restaurants/SearchBar'
+import InteractiveMap from 'components/restaurants/InteractiveMap'
 
 export class Restaurants extends React.Component {
 
@@ -40,10 +41,10 @@ export class Restaurants extends React.Component {
     filterList = () => {
         let filteredItems = this.state.filteredRests;
         var filteredValues = this.state.filteredValues;
-        this.filterProperties.forEach(function(filterBy) {
+        this.filterProperties.forEach(function (filterBy) {
             var filterValue = filteredValues[filterBy];
             if (filterValue !== '') {
-                filteredItems = filteredItems.filter(function(item) {
+                filteredItems = filteredItems.filter(function (item) {
                     let itemPropVal = item.props[filterBy];
                     let returnValue;
                     switch (typeof(itemPropVal)) {
@@ -77,19 +78,19 @@ export class Restaurants extends React.Component {
             return results.json();
         }).then(data => {
             let rests = data.map(rest => {
-                    return (
-                        <Restaurant
-                            key={rest.id}
-                            name={rest.name}
-                            cuisine={rest.cuisine_name}
-                            image_url={rest.image_url}
-                            address={rest.address}
-                            rating={rest.rating}
-                            delivery_time={rest.delivery_time}
-                            ten_bis={rest.ten_bis}
-                        />
-                    )
-                });
+                return (
+                    <Restaurant
+                        key={rest.id}
+                        name={rest.name}
+                        cuisine={rest.cuisine_name}
+                        image_url={rest.image_url}
+                        address={rest.address}
+                        rating={rest.rating}
+                        delivery_time={rest.delivery_time}
+                        ten_bis={rest.ten_bis}
+                    />
+                )
+            });
             this.setState({restaurants: rests, filteredRests: rests});
         })
     }
@@ -98,20 +99,22 @@ export class Restaurants extends React.Component {
         let filteredList = this.filterList();
 
         return (
-            <div className='container-column'>
-                <div className='container-row'>
-                    {this.props.isSearchShown ? <SearchBar onChange={this.filterSearchedList} /> : null}
-                    {this.props.isFilterShown ?
-                        <FilterBar
-                            clearFilters={this.clearFilters}
-                            onFilterChange={this.filterItems}
-                            filteredValues={this.state.filteredValues}
-                            filteredList={this.state.filteredRests}
-                        />
-                        : null}
-                </div>
-                <div className="container-column">
-                    {filteredList}
+            <div className='container-row rest-padding rest-view'>
+                <div className='container-column center'>
+                    <div className='container-column center'>
+                        {this.props.isSearchShown ? <SearchBar onChange={this.filterSearchedList}/> : null}
+                        {this.props.isFilterShown ?
+                            <FilterBar
+                                clearFilters={this.clearFilters}
+                                onFilterChange={this.filterItems}
+                                filteredValues={this.state.filteredValues}
+                                filteredList={this.state.filteredRests}
+                            />
+                            : null}
+                    </div>
+                    <div className="container-column">
+                        {filteredList}
+                    </div>
                 </div>
             </div>
         );

@@ -15,9 +15,9 @@ export class Restaurant extends React.Component {
         return (
             <div className="rest-line">
                 <div className="rest-container">
-                  <img src={this.props.image_url} className="rest-icon"/>
+                  <img src={this.props.image_url || 'images/Dinner-Icon.png'} className="rest-icon"/>
 
-                  <div className="rest-info">
+                  <div className="rest-padding">
                       <div className="horizontal">
                         <h4 className="rest-info-line rest-name">{this.props.name}</h4>
                         <div>

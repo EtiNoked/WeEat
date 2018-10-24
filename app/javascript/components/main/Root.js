@@ -11,6 +11,7 @@ class Root extends React.Component {
                 <div className="sans-serif">
                     <Banner/>
                     <Menu/>
+                    <div className='footer horizontal-bar' />
                 </div>
             </div>
         );
