@@ -4,21 +4,18 @@ class DynamicBar extends React.Component {
     constructor() {
         super()
         this.state = {
-            isVisibile: true
+            isVisible: true
         }
     }
 
     toggleVisible () {
         this.setState({
-            isVisibile: !this.state.isVisibile
+            isVisible: !this.state.isVisible
         })
     }
 
     dynamicBar = () => {
-        return (this.state.isVisibile ? (
-                this.props.bar
-            ) : null
-        )
+        return (this.state.isVisible ? this.props.bar : null)
     }
 
     render() {
