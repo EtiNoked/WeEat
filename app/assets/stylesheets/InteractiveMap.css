@@ -1,4 +1,15 @@
 .map-container {
-    height: 1000px;
+    padding-top: 10px;
+    height: 950px;
     width: 100%;
+}
+
+.restaurant-details-div {
+    width: 200px;
+    height: 80px;
+    background-color: #eaebed;
+    color: #444444;
+    text-align: center;
+    border-style: ridge;
+    z-index: 999
 }

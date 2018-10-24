@@ -16,7 +16,8 @@ export class Restaurants extends React.Component {
                 rating: ''
             },
             restaurants: [],
-            filteredRests: []
+            filteredRests: [],
+            focusedRest: null
         }
     }
 
@@ -73,6 +74,10 @@ export class Restaurants extends React.Component {
         });
     }
 
+    onRestaurantClicked = (restaurant) => {
+        this.setState({focusedRest: restaurant});
+    }
+
     componentDidMount() {
         fetch('/restaurants').then(results => {
             return results.json();
@@ -81,6 +86,7 @@ export class Restaurants extends React.Component {
                 return (
                     <Restaurant
                         key={rest.id}
+                        restaurant_id={rest.id}
                         name={rest.name}
                         cuisine={rest.cuisine_name}
                         image_url={rest.image_url}
@@ -90,6 +96,7 @@ export class Restaurants extends React.Component {
                         ten_bis={rest.ten_bis}
                         latitude={rest.latitude}
                         longitude={rest.longitude}
+                        onClicked={this.onRestaurantClicked}
                     />
                 )
             });
@@ -120,6 +127,7 @@ export class Restaurants extends React.Component {
                 </div>
                 <InteractiveMap
                     restaurants={filteredList}
+                    focusedRest={this.state.focusedRest}
                 />
             </div>
         );
