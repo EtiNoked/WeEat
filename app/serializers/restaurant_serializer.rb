@@ -14,7 +14,7 @@
 #
 
 class RestaurantSerializer < ApplicationSerializer
-  attributes :name, :cuisine_name, :image_url, :rating, :ten_bis, :address
+  attributes :name, :cuisine_name, :image_url, :rating, :ten_bis, :address, :latitude, :longitude
   has_many :reviews
 
   def cuisine_name

@@ -1,31 +1,48 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import GoogleMapReact from 'google-map-react';
+import {Icon} from 'react-icons-kit'
+import {location} from 'react-icons-kit/icomoon/location'
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+
+const RestaurantMarker = ({name}) =>
+    <div>
+        <Icon size={25} icon={location} style={{color: 'red'}}/>
+        <div style={{fontWeight: 'bold'}}>{name}</div>
+    </div>;
 
 class InteractiveMap extends Component {
     static defaultProps = {
         center: {
-            lat: 59.95,
-            lng: 30.33
+            lat: 40.7,
+            lng: -73.9
         },
         zoom: 11
     };
 
+    markers = () => {
+        return this.props.restaurants.map((rest, index) => {
+            return (
+                <RestaurantMarker
+                    key={index}
+                    lat={rest.props.latitude}
+                    lng={rest.props.longitude}
+                    name={rest.props.name}
+                />
+            )
+        });
+    }
+
     render() {
+        let markers = this.markers();
         return (
             // Important! Always set the container height explicitly
             <div className='map-container'>
                 <GoogleMapReact
-                    bootstrapURLKeys={{ key: "AIzaSyCgtxZUekCAg5pGCh-lpncLT91Qpwk4TBU" }}
+                    bootstrapURLKeys={{key: "AIzaSyCgtxZUekCAg5pGCh-lpncLT91Qpwk4TBU"}}
                     defaultCenter={this.props.center}
                     defaultZoom={this.props.zoom}
                 >
-                    <AnyReactComponent
-                        lat={59.955413}
-                        lng={30.337844}
-                        text={'Kreyser Avrora'}
-                    />
+                    {markers}
                 </GoogleMapReact>
             </div>
         );

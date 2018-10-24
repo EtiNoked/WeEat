@@ -88,6 +88,8 @@ export class Restaurants extends React.Component {
                         rating={rest.rating}
                         delivery_time={rest.delivery_time}
                         ten_bis={rest.ten_bis}
+                        latitude={rest.latitude}
+                        longitude={rest.longitude}
                     />
                 )
             });
@@ -102,7 +104,6 @@ export class Restaurants extends React.Component {
             <div className='container-row rest-padding'>
                 <div className='container-column center'>
                     <div className='container-column center'>
-                        {this.props.isSearchShown ? <SearchBar onChange={this.filterSearchedList}/> : null}
                         {this.props.isFilterShown ?
                             <FilterBar
                                 clearFilters={this.clearFilters}
@@ -111,12 +112,15 @@ export class Restaurants extends React.Component {
                                 filteredList={this.state.filteredRests}
                             />
                             : null}
+                        {this.props.isSearchShown ? <SearchBar onChange={this.filterSearchedList}/> : null}
                     </div>
                     <div className="container-column">
                         {filteredList}
                     </div>
                 </div>
-                <InteractiveMap/>
+                <InteractiveMap
+                    restaurants={filteredList}
+                />
             </div>
         );
     }

@@ -9,7 +9,7 @@ class FilterForm extends React.Component {
         this.state = {
             cuisineOptions: [],
             tenBisOptions: ['', true, false],
-            ratingOptions: ['', 1, 2, 3]
+            ratingOptions: ['', 1, 2, 3, 4, 5]
         }
     }
 
