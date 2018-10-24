@@ -99,7 +99,7 @@ export class Restaurants extends React.Component {
         let filteredList = this.filterList();
 
         return (
-            <div className='container-row rest-padding rest-view'>
+            <div className='container-row rest-padding'>
                 <div className='container-column center'>
                     <div className='container-column center'>
                         {this.props.isSearchShown ? <SearchBar onChange={this.filterSearchedList}/> : null}
@@ -116,6 +116,7 @@ export class Restaurants extends React.Component {
                         {filteredList}
                     </div>
                 </div>
+                <InteractiveMap/>
             </div>
         );
     }

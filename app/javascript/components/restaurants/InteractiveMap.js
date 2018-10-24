@@ -15,7 +15,7 @@ class InteractiveMap extends Component {
     render() {
         return (
             // Important! Always set the container height explicitly
-            <div style={{ height: '900px', width: '100%' }}>
+            <div className='map-container'>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: "AIzaSyCgtxZUekCAg5pGCh-lpncLT91Qpwk4TBU" }}
                     defaultCenter={this.props.center}

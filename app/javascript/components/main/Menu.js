@@ -130,17 +130,19 @@ class Menu extends React.Component {
                                     {buttons}
                                 </div>
                             </div>
-                            <Route
-                                exact path="/restaurants"
-                                render={(props) =>
-                                    <Restaurants
-                                        isSearchShown={this.state.isSearchActive}
-                                        isFilterShown={this.state.isFilterActive}
-                                        {...props}
-                                    />
-                                }
-                            />
-                            <Route path="/about" component={About}/>
+                            <div className='content-container'>
+                                <Route
+                                    exact path="/restaurants"
+                                    render={(props) =>
+                                        <Restaurants
+                                            isSearchShown={this.state.isSearchActive}
+                                            isFilterShown={this.state.isFilterActive}
+                                            {...props}
+                                        />
+                                    }
+                                />
+                                <Route path="/about" component={About}/>
+                            </div>
                         </div>
                     </BrowserRouter>
                 </div>
