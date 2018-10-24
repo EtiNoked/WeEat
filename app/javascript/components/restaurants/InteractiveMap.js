@@ -45,9 +45,9 @@ class InteractiveMap extends Component {
     };
 
     zoomOnRest = () => {
-        let lat = this.props.focusedRest ? this.props.focusedRest.latitude : null;
-        let lng = this.props.focusedRest ? this.props.focusedRest.longitude : null;
-        let focusedRest = this.props.focusedRest ? (
+        const lat = this.props.focusedRest ? this.props.focusedRest.latitude : null;
+        const lng = this.props.focusedRest ? this.props.focusedRest.longitude : null;
+        const focusedRest = this.props.focusedRest ? (
             <RestaurantLabel
                 lat={lat}
                 lng={lng}
@@ -67,8 +67,8 @@ class InteractiveMap extends Component {
     };
 
     render() {
-        let markers = this.markers();
-        let zoomInfo = this.zoomOnRest();
+        const markers = this.markers();
+        const zoomInfo = this.zoomOnRest();
         return (
             // Important! Always set the container height explicitly
             <div className='map-container'>

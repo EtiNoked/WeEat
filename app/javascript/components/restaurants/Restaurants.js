@@ -105,7 +105,7 @@ export class Restaurants extends React.Component {
     }
 
     render() {
-        let filteredList = this.filterList();
+        const filteredList = this.filterList();
 
         return (
             <div className='container-row rest-padding'>

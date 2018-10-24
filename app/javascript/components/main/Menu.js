@@ -29,7 +29,7 @@ class ToggledButton extends React.Component {
     }
 
     render() {
-        let icon = this.getIcon();
+        const icon = this.getIcon();
         return (
             <button
                 id={this.props.button_id}
