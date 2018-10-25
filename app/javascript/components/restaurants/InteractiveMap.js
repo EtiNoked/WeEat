@@ -11,7 +11,7 @@ const RestaurantMarker = ({name}) =>
     </div>;
 
 const RestaurantLabel = ({rest}) =>
-    <div className='restaurant-details-div'>
+    <div className='restaurant-details'>
         <div className='rest-name'>{rest.name}</div>
         <div>{rest.cuisine_name}</div>
         <div>{rest.address}</div>
