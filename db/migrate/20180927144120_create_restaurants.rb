@@ -9,6 +9,8 @@ class CreateRestaurants < ActiveRecord::Migration[5.2]
       t.integer :rating, inclusion: { in: 0..3 }
       t.boolean :ten_bis, default: false
       t.string :address
+      t.float :latitude
+      t.float :longitude
       t.integer :delivery_time
 
       t.timestamps

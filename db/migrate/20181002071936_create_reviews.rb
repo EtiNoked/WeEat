@@ -3,7 +3,7 @@ class CreateReviews < ActiveRecord::Migration[5.2]
     create_table :reviews do |t|
 
       t.integer :restaurant_id
-      t.integer :rating, inclusion: {in: 0..3}
+      t.integer :rating, inclusion: {in: 0..5}
       t.string :summary, null: false
       t.text :full_review
 

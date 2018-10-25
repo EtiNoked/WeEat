@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2018_10_02_075411) do
 
   create_table "cuisines", force: :cascade do |t|
     t.string "name"
+    t.string "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_cuisines_on_name"
@@ -28,6 +29,8 @@ ActiveRecord::Schema.define(version: 2018_10_02_075411) do
     t.integer "rating"
     t.boolean "ten_bis", default: false
     t.string "address"
+    t.float "latitude"
+    t.float "longitude"
     t.integer "delivery_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

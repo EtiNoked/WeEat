@@ -1,0 +1,146 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0px;
+    margin: 0px;
+    color: #505050;
+    line-height: normal;
+    background-color: lightgray;
+}
+
+#menu {
+    position: fixed;
+    top: 0;
+    margin-top: 250px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.horizontal-bar {
+    background-color: #301f0d;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    color: white;
+    text-align: center;
+}
+
+#filter-bar {
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    height: 80px;
+}
+
+.navigation {
+    list-style: none;
+    margin: 0;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+}
+
+.left {
+    justify-content: flex-start;
+}
+
+.right {
+    justify-content: flex-end;
+    padding-right: 20px;
+}
+
+.navigation a, button {
+    text-decoration: none;
+    display: block;
+    padding: 1em;
+    color: white;
+    background-color: transparent;
+    border: none;
+}
+
+button:focus {
+    outline: none;
+    border: none;
+}
+
+.navigation a:hover {
+    color: orange;
+}
+
+@media all and (max-width: 800px) {
+    .navigation {
+        justify-content: space-around;
+    }
+}
+
+@media all and (max-width: 600px) {
+    .navigation {
+        -webkit-flex-flow: column wrap;
+        flex-flow: column wrap;
+        padding: 0;
+    }
+
+    .navigation a {
+        text-align: center;
+        padding: 10px;
+        border-top: 1px solid rgba(255,255,255,0.3);
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .navigation li:last-of-type a {
+        border-bottom: none;
+    }
+}
+
+#banner .banner {
+    width: 100%;
+    height: 250px;
+}
+
+#banner {
+    position: fixed;
+    top: 0;
+    text-align: center;
+    color: white;
+    width: 100%;
+}
+
+#weeat-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 100px;
+}
+
+.container-column, .container-row {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.container-row {
+    flex-direction: row;
+}
+
+.container-column {
+    flex-direction: column;
+}
+
+.centered {
+    align-items: center;
+}
+
+.content-container {
+    position: fixed;
+    top: 0;
+    margin-top: 300px;
+    width: 98%;
+    height: 100%;
+    overflow: scroll;
+    padding-left: 1%
+}
