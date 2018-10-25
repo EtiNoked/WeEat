@@ -29,15 +29,15 @@ export default class InteractiveMap extends Component {
 
     markers = () => {
         return this.props.restaurants.map((rest, index) => {
-            let name = (this.props.focusedRest
-                && this.props.focusedRest.restaurant_id === rest.props.restaurant_id)
-                ? "" : rest.props.name;
+            const name = (this.props.focusedRest
+                && this.props.focusedRest.rest.restaurant_id === rest.props.rest.restaurant_id)
+                ? "" : rest.props.rest.name;
 
             return (
                 <RestaurantMarker
                     key={index}
-                    lat={rest.props.latitude}
-                    lng={rest.props.longitude}
+                    lat={rest.props.rest.latitude}
+                    lng={rest.props.rest.longitude}
                     name={name}
                 />
             )
@@ -45,13 +45,13 @@ export default class InteractiveMap extends Component {
     };
 
     zoomOnRest = () => {
-        const lat = this.props.focusedRest ? this.props.focusedRest.latitude : null;
-        const lng = this.props.focusedRest ? this.props.focusedRest.longitude : null;
+        const lat = this.props.focusedRest ? this.props.focusedRest.rest.latitude : null;
+        const lng = this.props.focusedRest ? this.props.focusedRest.rest.longitude : null;
         const focusedRest = this.props.focusedRest ? (
             <RestaurantLabel
                 lat={lat}
                 lng={lng}
-                rest={this.props.focusedRest}
+                rest={this.props.focusedRest ? this.props.focusedRest.rest : null}
             />
         ) : null;
 

@@ -82,30 +82,25 @@ export default class Restaurants extends React.Component {
         fetch('/restaurants').then(results => {
             return results.json();
         }).then(data => {
-            let rests = data.map(rest => {
-                return (
-                    <Restaurant
-                        key={rest.id}
-                        restaurant_id={rest.id}
-                        name={rest.name}
-                        cuisine={rest.cuisine_name}
-                        image_url={rest.image_url}
-                        address={rest.address}
-                        rating={rest.rating}
-                        delivery_time={rest.delivery_time}
-                        ten_bis={rest.ten_bis}
-                        latitude={rest.latitude}
-                        longitude={rest.longitude}
-                        onClicked={this.onRestaurantClicked}
-                    />
-                )
-            });
-            this.setState({restaurants: rests, filteredRests: rests});
-        })
+            this.setState({restaurants: data, filteredRests: data});
+        });
+    }
+
+    getRestaurants = (data) => {
+        return data.map(rest => {
+            return (
+                <Restaurant
+                    key={rest.id}
+                    rest={rest}
+                    onClicked={this.onRestaurantClicked}
+                />
+            )
+        });
     }
 
     render() {
         const filteredList = this.filterList();
+        const restaurants = this.getRestaurants(filteredList);
 
         return (
             <div className='container-row rest-padding'>
@@ -122,11 +117,11 @@ export default class Restaurants extends React.Component {
                         {this.props.isSearchShown ? <SearchBar onChange={this.filterSearchedList}/> : null}
                     </div>
                     <div className="container-column">
-                        {filteredList}
+                        {restaurants}
                     </div>
                 </div>
                 <InteractiveMap
-                    restaurants={filteredList}
+                    restaurants={restaurants}
                     focusedRest={this.state.focusedRest}
                 />
             </div>
