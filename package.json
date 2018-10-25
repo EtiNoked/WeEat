@@ -6,6 +6,9 @@
     "ajv": "^6.5.4",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "dotenv": "^6.1.0",
+    "dotenv-webpack": "^1.5.7",
+    "google-map-react": "^1.0.9",
     "prop-types": "^15.6.2",
     "react": "^15.6.2",
     "react-dom": "^15.6.2",
@@ -16,8 +19,7 @@
     "react-native": "^0.57.3",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "webpack-dev-server": "2.11.2",
-    "google-map-react": "^1.0.9"
+    "webpack-dev-server": "2.11.2"
   },
   "engines": {
     "yarn": ">= 1.0.2",

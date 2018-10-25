@@ -21,7 +21,7 @@ namespace :zomato_api do
   end
 
   def saveCuisines
-    uri = URI.parse("https://developers.zomato.com/api/v2.1/cuisines?city_id=280")
+    uri = URI.parse(ENV['ZOMATO_URL'] + ENV['ZOMATO_CUISINES_EXT'])
     response = getResponse(uri)
     cuisines = response["cuisines"]
 
@@ -35,7 +35,7 @@ namespace :zomato_api do
   end
 
   def saveReviews(restaurant_id)
-    request_utl = "https://developers.zomato.com/api/v2.1/reviews?res_id=" + restaurant_id.to_s
+    request_utl = ENV['ZOMATO_URL'] + ENV['ZOMATO_REVIEWS_EXT'] + restaurant_id.to_s
     uri = URI.parse(request_utl)
     response = getResponse(uri)
     reviews = response["user_reviews"]
@@ -59,7 +59,8 @@ namespace :zomato_api do
 
     saveCuisines
 
-    uri = URI.parse("https://developers.zomato.com/api/v2.1/search?entity_id=280&entity_type=city")
+
+    uri = URI.parse(ENV['ZOMATO_URL'] + ENV['ZOMATO_RESTAURANTS_EXT'])
     response = getResponse(uri)
     restaurants = response["restaurants"]
     restaurants.each do |restaurant|
