@@ -29,26 +29,6 @@ class FilterForm extends React.Component {
     }
 };
 
-let FilterOption = (id, value, options) => {
-    return (
-        <div id="main-selection" className="rounded shadow">
-            <select
-                id={id}
-                value={value}
-                onChange={this.changeOption.bind(this, id)}
-            >
-                {options.map(function (option) {
-                    return (
-                        <option key={option} value={option}>
-                            {option === true ? 'Accepted' : (option === false) ? 'Not Accpeted' : ''}
-                        </option>
-                    )
-                })}
-            </select>
-        </div>
-    )
-}
-
 class FilterOptions extends React.Component {
     changeOption = (type, event) => {
         var val = event.target.value;
@@ -57,7 +37,7 @@ class FilterOptions extends React.Component {
 
     cuisineOptions = () => {
         let cuisines = this.props.filteredList.map(item => {
-            return item.props.cuisine
+            return item.cuisine_name
         });
         let uniqueCuisines = cuisines.filter(function(item, pos, self) {
             return self.indexOf(item) == pos;
@@ -95,8 +75,8 @@ class FilterOptions extends React.Component {
                     <div id="main-selection" className="rounded shadow">
                         <select
                             id="cuisine"
-                            value={this.props.filteredValues.cuisine}
-                            onChange={this.changeOption.bind(this, 'cuisine')}
+                            value={this.props.filteredValues.cuisine_name}
+                            onChange={this.changeOption.bind(this, 'cuisine_name')}
                         >
                             {cuisines.map(function (option, index) {
                                 return (<option key={index} value={option}>{option}</option>)

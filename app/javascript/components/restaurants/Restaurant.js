@@ -26,7 +26,7 @@ export default class Restaurant extends React.Component {
                             </div>
                         </div>
                         <div className="rest-info-line horizontal">
-                            <div className='rest-info-line'> {this.props.rest.cuisine} </div>
+                            <div className='rest-info-line'> {this.props.rest.cuisine_name} </div>
                             <div id='rating' className='rest-info-line detail-icon'>{stars(this.props.rest.rating)}</div>
                         </div>
                         <div className="rest-info-line">{this.props.rest.address}</div>

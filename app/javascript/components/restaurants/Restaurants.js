@@ -12,7 +12,7 @@ export default class Restaurants extends React.Component {
             forceRender: false,
             filteredValues: {
                 ten_bis: '',
-                cuisine: '',
+                cuisine_name: '',
                 rating: ''
             },
             restaurants: [],
@@ -31,13 +31,13 @@ export default class Restaurants extends React.Component {
         var updatedList = this.state.restaurants;
         let searchedValue = event.target.value;
         updatedList = updatedList.filter(item => {
-            return item.props.name.toLowerCase().search(
+            return item.name.toLowerCase().search(
                 searchedValue.toLowerCase()) !== -1;
         });
         this.setState({filteredRests: updatedList});
     }
 
-    filterProperties = ["ten_bis", "cuisine", "rating"];
+    filterProperties = ["ten_bis", "cuisine_name", "rating"];
 
     filterList = () => {
         let filteredItems = this.state.filteredRests;
@@ -46,7 +46,7 @@ export default class Restaurants extends React.Component {
             var filterValue = filteredValues[filterBy];
             if (filterValue !== '') {
                 filteredItems = filteredItems.filter(function (item) {
-                    let itemPropVal = item.props[filterBy];
+                    let itemPropVal = item[filterBy];
                     let returnValue;
                     switch (typeof(itemPropVal)) {
                         case 'boolean':
