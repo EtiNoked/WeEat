@@ -4,7 +4,7 @@ require 'json'
 
 namespace :zomato_api do
 
-  def getResponse uri
+  def getResponse(uri)
     request = Net::HTTP::Get.new(uri)
     request["Accept"] = "application/json"
     request["User-Key"] = "6ad3f6eff60492ea9d4f01379fdbadd6"
@@ -34,7 +34,7 @@ namespace :zomato_api do
     end
   end
 
-  def saveReviews restaurant_id
+  def saveReviews(restaurant_id)
     request_utl = "https://developers.zomato.com/api/v2.1/reviews?res_id=" + restaurant_id.to_s
     uri = URI.parse(request_utl)
     response = getResponse(uri)
