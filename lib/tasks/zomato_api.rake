@@ -17,7 +17,7 @@ namespace :zomato_api do
       http.request(request)
     end
 
-    return JSON.parse(response.body)
+    JSON.parse(response.body)
   end
 
   def saveCuisines
@@ -26,9 +26,9 @@ namespace :zomato_api do
     cuisines = response["cuisines"]
 
     cuisines.each do |cuisine|
-      new_cuisine = Cuisine.new do |key|
-        key.id = cuisine["cuisine"]["cuisine_id"]
-        key.name = cuisine["cuisine"]["cuisine_name"]
+      new_cuisine = Cuisine.new do |newCuisine|
+        newCuisine.id = cuisine["cuisine"]["cuisine_id"]
+        newCuisine.name = cuisine["cuisine"]["cuisine_name"]
       end
       new_cuisine.save!
     end
@@ -41,12 +41,12 @@ namespace :zomato_api do
     reviews = response["user_reviews"]
     reviews.each do |review|
       review = review["review"]
-      new_review = Review.new do |key|
-        key.id = review["id"]
-        key.restaurant_id = restaurant_id
-        key.rating = review["rating"]
-        key.summary = review["rating_text"]
-        key.full_review = review["review_text"]
+      new_review = Review.new do |newReview|
+        newReview.id = review["id"]
+        newReview.restaurant_id = restaurant_id
+        newReview.rating = review["rating"]
+        newReview.summary = review["rating_text"]
+        newReview.full_review = review["review_text"]
       end
       new_review.save!
     end
@@ -63,16 +63,16 @@ namespace :zomato_api do
     response = getResponse(uri)
     restaurants = response["restaurants"]
     restaurants.each do |restaurant|
-      new_rest = Restaurant.new do |key|
+      new_rest = Restaurant.new do |newRestaurant|
         restaurant = restaurant["restaurant"]
-        key.id = restaurant["id"]
-        key.name = restaurant["name"]
-        key.address = restaurant["location"]["address"]
-        key.latitude = restaurant["location"]["latitude"]
-        key.longitude = restaurant["location"]["longitude"]
+        newRestaurant.id = restaurant["id"]
+        newRestaurant.name = restaurant["name"]
+        newRestaurant.address = restaurant["location"]["address"]
+        newRestaurant.latitude = restaurant["location"]["latitude"]
+        newRestaurant.longitude = restaurant["location"]["longitude"]
         cuisine = restaurant["cuisines"].split(',').first
-        key.cuisine = Cuisine.where({name: cuisine}).first
-        key.ten_bis = [true, false].sample
+        newRestaurant.cuisine = Cuisine.where({name: cuisine}).first
+        newRestaurant.ten_bis = [true, false].sample
       end
       new_rest.save!
       saveReviews new_rest.id
