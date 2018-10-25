@@ -42,7 +42,7 @@ class ToggledButton extends React.Component {
     }
 }
 
-class Menu extends React.Component {
+export default class Menu extends React.Component {
     constructor() {
         super()
         this.state = {
@@ -90,17 +90,14 @@ class Menu extends React.Component {
         )
     }
 
-    render() {
-
-        const buttons = this.searchFilterButtons();
-
+    linkMarkup = () => {
         const links = [
             {lable: 'Home', link: '/'},
             {lable: 'About', link: '/about'},
             {lable: 'Restaurants', link: '/restaurants'}
         ];
 
-        const linksMarkup = links.map((link, index) => {
+        return links.map((link, index) => {
             return (
                 <li key={index}>
                     <NavLink
@@ -116,39 +113,41 @@ class Menu extends React.Component {
                 </li>
             )
         })
+    }
+
+    render() {
+
+        const buttons = this.searchFilterButtons();
+        const linksMarkup = this.linkMarkup();
 
         return (
             <div>
-                <div>
-                    <BrowserRouter>
-                        <div>
-                            <div id='menu' className='horizontal-bar'>
-                                <ul className='navigation left'>
-                                    {linksMarkup}
-                                </ul>
-                                <div>
-                                    {buttons}
-                                </div>
-                            </div>
-                            <div className='content-container'>
-                                <Route
-                                    exact path="/restaurants"
-                                    render={(props) =>
-                                        <Restaurants
-                                            isSearchShown={this.state.isSearchActive}
-                                            isFilterShown={this.state.isFilterActive}
-                                            {...props}
-                                        />
-                                    }
-                                />
-                                <Route path="/about" component={About}/>
+                <BrowserRouter>
+                    <div>
+                        <div id='menu' className='horizontal-bar'>
+                            <ul className='navigation left'>
+                                {linksMarkup}
+                            </ul>
+                            <div>
+                                {buttons}
                             </div>
                         </div>
-                    </BrowserRouter>
-                </div>
+                        <div className='content-container'>
+                            <Route
+                                exact path="/restaurants"
+                                render={(props) =>
+                                    <Restaurants
+                                        isSearchShown={this.state.isSearchActive}
+                                        isFilterShown={this.state.isFilterActive}
+                                        {...props}
+                                    />
+                                }
+                            />
+                            <Route path="/about" component={About}/>
+                        </div>
+                    </div>
+                </BrowserRouter>
             </div>
         );
     }
 }
-
-export default Menu

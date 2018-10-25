@@ -4,7 +4,7 @@ import FilterBar from 'components/restaurants/FilterBar'
 import SearchBar from 'components/restaurants/SearchBar'
 import InteractiveMap from 'components/restaurants/InteractiveMap'
 
-export class Restaurants extends React.Component {
+export default class Restaurants extends React.Component {
 
     constructor() {
         super();
@@ -133,5 +133,3 @@ export class Restaurants extends React.Component {
         );
     }
 }
-
-export default Restaurants

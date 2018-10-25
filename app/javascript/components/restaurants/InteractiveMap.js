@@ -17,7 +17,7 @@ const RestaurantLabel = ({rest}) =>
         <div>{rest.address}</div>
     </div>;
 
-class InteractiveMap extends Component {
+export default class InteractiveMap extends Component {
 
     static defaultProps = {
         center: {
@@ -86,5 +86,3 @@ class InteractiveMap extends Component {
         );
     }
 }
-
-export default InteractiveMap;

@@ -124,8 +124,7 @@ class FilterOptions extends React.Component {
     }
 }
 
-
-class FilterBar extends DynamicBar {
+export default class FilterBar extends DynamicBar {
     render() {
         return (
             <DynamicBar
@@ -146,6 +145,4 @@ class FilterBar extends DynamicBar {
         )
     }
 }
-
-export default FilterBar
 

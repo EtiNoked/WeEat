@@ -4,7 +4,7 @@ import {BrowserRouter, Route, NavLink} from 'react-router-dom'
 import Banner from 'components/main/Banner'
 import Menu from 'components/main/Menu'
 
-class Root extends React.Component {
+export default class Root extends React.Component {
     render() {
         return (
             <div>
@@ -17,5 +17,3 @@ class Root extends React.Component {
         );
     }
 }
-
-export default Root

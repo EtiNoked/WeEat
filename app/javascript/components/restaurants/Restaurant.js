@@ -1,6 +1,6 @@
 import React from 'react'
 
-export class Restaurant extends React.Component {
+export default class Restaurant extends React.Component {
     render() {
 
         let stars = (no_of_stars) => {
@@ -37,5 +37,3 @@ export class Restaurant extends React.Component {
         );
     }
 }
-
-export default Restaurant
