@@ -7,10 +7,10 @@ namespace :zomato_api do
   def getResponse(uri)
     request = Net::HTTP::Get.new(uri)
     request["Accept"] = "application/json"
-    request["User-Key"] = "6ad3f6eff60492ea9d4f01379fdbadd6"
+    request["User-Key"] = ENV['ZOMATO_USER_KEY']
 
     req_options = {
-        use_ssl: uri.scheme == "https",
+        use_ssl: uri.scheme == "https"
     }
 
     response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
