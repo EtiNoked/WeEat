@@ -34,7 +34,7 @@
 
 #main-selection select {
     border: 0;
-    color: #EEE;
+    color: #eee;
     background: transparent;
     font-size: 15px;
     font-weight: bold;
@@ -46,13 +46,11 @@
 #main-selection {
     overflow:hidden;
     width:200px;
-    background: var(--bar-color) url("http://i62.tinypic.com/15xvbd5.png") no-repeat scroll 169px center;
+    background: var(--bar-color) url("../images/15xvbd5.png") no-repeat scroll 169px center;
 }
 
 .rounded {
-    -moz-border-radius: 9px 9px 9px 9px;
-    -webkit-border-radius: 9px 9px 9px 9px;
-    border-radius: 9px 9px 9px 9px;
+    border-radius: 9px;
 }
 
 .shadow {
