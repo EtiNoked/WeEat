@@ -68,7 +68,7 @@ class FilterOptions extends React.Component {
     }
 
     render() {
-        let cuisines = this.cuisineOptions();
+        const cuisines = this.cuisineOptions();
 
         return (
             <div className="filter-options">

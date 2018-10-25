@@ -140,8 +140,8 @@ button:focus {
     position: fixed;
     top: 0;
     margin-top: 300px;
-    width: 90%;
+    width: 98%;
     height: 100%;
     overflow: scroll;
-    padding-left: 5%
+    padding-left: 1%
 }
